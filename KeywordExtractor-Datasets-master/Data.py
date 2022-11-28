@@ -10,14 +10,17 @@ def get_data(folder_path,file_list):
         ## document data
         f=open(folder_path+'/'+'docsutf8'+'/'+i,encoding='utf-8')
         temp_data=f.read()
+        print(temp_data)
 
         ##key_data
         key_file=i[0:-3]+'key'
         k=open(folder_path+'/'+'keys'+'/'+key_file,encoding='utf-8')
         temp_keys=k.readlines()
+        print(temp_keys)
 
         dict={'document_data': temp_data,'document_key':temp_keys}
         data.append(dict)
+        break
     return data
 
 def get_file_list(folder_path):
@@ -43,18 +46,27 @@ def data_insert_mongo(data):
     
     return x.inserted_ids
 
+def merge_data(final_data,data):
+    for i in data:
+        final_data.append(i)
+    return final_data
+
 if __name__ == "__main__":
     path=r"C:/Users/s0349821/Desktop/College/code/KeywordExtractor-Datasets-master/datasets"
-
+    final_data=[]
    
-    folder_list=[]
-    for i in os.listdir(path):
-        folder_list.append(path+"/"+i)
+    folder_list=["C:/Users/s0349821/Desktop/College/code/KeywordExtractor-Datasets-master/datasets/fao30"]
+    # for i in os.listdir(path):
+    #     folder_list.append(path+"/"+i)
 
 
     for f in folder_list:
+        # print(f)
         file_list=get_file_list(f)
         data_list=get_data(f,file_list)
-        data_insert_mongo(data=data_list)
-            
-   
+        # #data_insert_mongo(data=data_list)
+        # final_data=merge_data(final_data,data_list)
+    
+
+
+        
