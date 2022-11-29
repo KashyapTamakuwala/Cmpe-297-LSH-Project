@@ -1,0 +1,114 @@
+<html>
+
+<head>
+    <title>Search Engine</title>
+    <link rel="shortcut icon" href="#">
+
+     <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>    
+</head>
+
+<style>
+
+    /* Styles for wrapping the search box */
+
+    .main {
+        width: 50%;
+        margin-top: 14%;
+        margin-bottom: auto;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    .for{
+        width: 50%;
+        margin-top: 3%;
+        margin-bottom: auto;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    /* Bootstrap 4 text input with search icon */
+
+    .has-search .form-control-feedback {
+        position: absolute;
+        z-index: 2;
+        display: block;
+        width: 2.375rem;
+        height: 2.375rem;
+        line-height: 2.375rem;
+        text-align: center;
+        pointer-events: none;
+        color: #aaa;
+    }
+</style>
+
+<!-- <script>
+    $(document).ready(function () {
+  $(".dropdown-menu li a").click(function () {
+      var selText = $(this).text();
+      console.log(selText)
+      $(this).closest('.input-group').find('#textaux').val(selText);
+  });
+});
+</script> -->
+
+<body>
+    
+    <div class="main">
+        <p class="h3 text-center font-weight-bold"> Search Engine </p>
+    </div>
+
+    <div class="for">
+        <form method="POST" action="/upload" enctype="multipart/form-data" class="col-12">
+    
+                <!-- Another variation with a button -->
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search this blog">
+                  <div class="input-group-append">
+                    <button class="btn btn-secondary btn-lg" type="submit">
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+                
+                
+        </form>
+    </div>
+    <!-- <div class="row col-4 text-center">
+        <p>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+        </p>
+        {% if filename %}
+            <div>
+                <img class="d-flex justify-content-center"  src="{{ url_for('display_image', filename=filename) }}",type='image'>
+                {% if message %}
+                        <h1>{{message}}</h1>
+                {% endif %}
+
+            </div>
+        {% endif %}
+
+    </div> -->
+</body>
+</html>
