@@ -22,18 +22,19 @@
 
     /* Styles for wrapping the search box */
 
-    .main {
-        width: 50%;
-        margin-top: 14%;
-        margin-bottom: auto;
-        margin-left: auto;
-        margin-right: auto;
-
+    div#loading {
+    width: 35px;
+    height: 35px;
+    display: none;
+    background: url(/static/load.gif) no-repeat;
+    cursor: wait;
     }
+
+
 
     .for{
         width: 50%;
-        margin-top: 3%;
+        margin-top: 15%;
         margin-bottom: auto;
         margin-left: auto;
         margin-right: auto;
@@ -55,38 +56,34 @@
     }
 </style>
 
-<!-- <script>
-    $(document).ready(function () {
-  $(".dropdown-menu li a").click(function () {
-      var selText = $(this).text();
-      console.log(selText)
-      $(this).closest('.input-group').find('#textaux').val(selText);
-  });
-});
-</script> -->
 
 <body>
-    
-    <div class="main">
-        <!-- <p class="h3 text-center font-weight-bold"> Search Engine </p> -->
-        <img src="static/images/giphy.gif" class="rounded mx-auto d-block", height="30%",width="30%">
-    </div>
 
-    <div class="for">
-        <form method="POST" action="/upload" enctype="multipart/form-data" class="col-12">
-    
-                <!-- Another variation with a button -->
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search this blog">
-                  <div class="input-group-append">
-                    <button class="btn btn-secondary btn-lg" type="submit">
-                      <i class="fa fa-search"></i>
-                    </button>
-                  </div>
-                </div>
-                
-                
-        </form>
+    <div class="for" id= "parent">
+        <div id="Collapseone" class="collapse show">
+            
+            <img src="static/images/giphy.gif" class="rounded mx-auto d-block", height="30%",width="30%">
+            
+            <form method="POST" action="/Search" style="margin-top: 5%;" enctype="multipart/form-data" class="multi-collapse show" id="multiCollapseExample1">
+        
+                    <!-- Another variation with a button -->
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="querry" placeholder="Search this blog">
+                        
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary btn-lg" type="submit" onclick="task1_save()">
+                            <i class="fa fa-search"></i>  
+                            </button>
+                        </div>
+                    
+                    </div>   
+            </form>
+
+        </div>
+
+        <div id="CollapseTwo" class="collapse">
+            <img src="static/images/load.gif" class="rounded mx-auto d-block", height="30%",width="30%">
+        </div>
     </div>
     <!-- <div class="row col-4 text-center">
         <p>
@@ -111,5 +108,19 @@
         {% endif %}
 
     </div> -->
+
+<script>
+
+    function task1_save(){
+    
+    
+    $("#Collapseone").collapse();
+    $('#CollapseTwo').toggle();
+        
+    }     
+
+    
+    </script>
+
 </body>
 </html>
