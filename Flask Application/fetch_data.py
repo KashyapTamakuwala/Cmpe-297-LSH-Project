@@ -5,7 +5,7 @@ from alive_progress import alive_bar
 
 def fetch_all_data():
     data_list=[]
-    mongoclinet= MongoClient("mongodb+srv://Kashyap:Kt1234@cmpe-297-project.hyaud2z.mongodb.net/?retryWrites=true&w=majority")
+    mongoclinet= MongoClient("mongodb+srv://Kashyap:<password>@cmpe-297-project.hyaud2z.mongodb.net/?retryWrites=true&w=majority")
     mydb = mongoclinet["Cmpe-297-database"]
 
     ## Collection
