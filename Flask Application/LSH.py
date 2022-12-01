@@ -1,5 +1,6 @@
 import numpy as np
 from numpy.linalg import norm
+from tqdm import tqdm
 from preprocess import preProcessData,shingleText
 
 class LSH:
@@ -18,6 +19,7 @@ class LSH:
         self.tables = [dict() for _ in range(ntabs)]
         self.randFeatures()
         self.hashData()
+    
     def encodeQueryData(self,query_data):
         ndata = []
 
@@ -43,7 +45,7 @@ class LSH:
         self.rfeatures = np.asarray(list(set(self.rfeatures)))
         self.rfeature_size = self.rfeatures.size
 
-        for row in self.data:
+        for row in tqdm(self.data):
             trow = [0]* self.rfeature_size
             for i,id in enumerate(self.rfeatures):
                 trow[i] += row.get(id,0)
@@ -68,7 +70,7 @@ class LSH:
             hash_key += '%d' % hval
         return hash_key
     def hashData(self):
-        for i in range(self.rdata.shape[0]):
+        for i in tqdm(range(self.rdata.shape[0])):
             crow = self.rdata[i,:]
             for table_id in range(self.ntabs):
                 table = self.tables[table_id]

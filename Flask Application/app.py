@@ -20,8 +20,10 @@ app.secret_key = "secret key"
 
 ## initalization
 print("Fetching data")
-app.config['data'] = fetch_all_data()
-app.config['l1'] =  initalize(app.config['data'])
+if app.config.get('data',-1)==-1:
+    app.config['data'] = fetch_all_data()
+if app.config.get('l1',-1) == -1:
+    app.config['l1'] =  initalize(app.config['data'])
 
 
 
@@ -45,12 +47,18 @@ def home():
 ## upload image function
 @app.route('/Search', methods=['POST'])
 def upload_image():
+    time.sleep(2)
     querry = request.form['querry']
     #print(querry)
     query_string ='"""' + querry + '"""'
     #print(query_string)
-    output = searcher(["""FAO Fisheries Circular No. 1012"""])
-    return render_template('index.html')
+    output = searcher([query_string])
+    index= output[0][0].tolist()
+    res_data = []
+    # print(index)
+    for i in index:
+        res_data.append(app.config['data'][int(i)][0])
+    return render_template('index.html', res_dt = res_data)
     
 if __name__ =="__main__":
     app.run(debug=True)
