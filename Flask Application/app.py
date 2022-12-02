@@ -4,7 +4,7 @@ import urllib.request
 import os
 from werkzeug.utils import secure_filename
 from initalize import initalize
-from fetch_data import fetch_all_data
+from fetch_data import fetch_all_data ,fetch_data_local
 import time
 
 
@@ -21,7 +21,7 @@ app.secret_key = "secret key"
 ## initalization
 print("Fetching data")
 if app.config.get('data',-1)==-1:
-    app.config['data'] = fetch_all_data()
+    app.config['data'] = fetch_data_local()
 if app.config.get('l1',-1) == -1:
     app.config['l1'] =  initalize(app.config['data'])
 
@@ -47,17 +47,20 @@ def home():
 ## upload image function
 @app.route('/Search', methods=['POST'])
 def upload_image():
-    time.sleep(2)
+    time.sleep(1)
     querry = request.form['querry']
-    #print(querry)
+    # print(querry)
     query_string ='"""' + querry + '"""'
-    #print(query_string)
+    # print(query_string)
+    # res_data=['a' for i in range(0,100)]
     output = searcher([query_string])
     index= output[0][0].tolist()
+    score = output[1][0].tolist()
     res_data = []
-    # print(index)
-    for i in index:
-        res_data.append(app.config['data'][int(i)][0])
+    print(index)
+    for i,s in zip(index,score):
+        res_data.append([app.config['data'][int(i)][0],s])
+    # res_data=[]
     return render_template('index.html', res_dt = res_data)
     
 if __name__ =="__main__":

@@ -78,8 +78,8 @@
     
     <div class="for shark-1" id= "parent">
         <div id="Collapseone" class="collapse show">
-            
-            <img src="static/images/giphy.gif" class="rounded mx-auto d-block", height="30%",width="30%">
+            <!-- <p class="h2 text-center">Team - 6</p> -->
+            <img src="static/images/giph.gif"  style="margin-top: 5%;" class="rounded mx-auto d-block", height="30%",width="30%">
             
             <form method="POST" action="/Search" style="margin-top: 5%;" enctype="multipart/form-data" class="sticky">
         
@@ -103,19 +103,24 @@
         </div>
 
         {% if res_dt %}
-            <div>
-                <table class="table table-striped table-bordered table-sm">
-                    <thead>
+            <div class=" collapse show" id="'collapsetable">
+                <table class="table table-striped table-bordered table-sm"  >
+                    <thead class="thead-dark">
                         <tr>
                             <th>
                                 Document Data
                             </th>
+                            <th>
+                                Similarity Score
+                            </th>
+
                         </tr>
                     </thead>
                     <tbody>
                         {% for d in res_dt %}
                         <tr class="overflow auto" style="height: 2px;">
-                            <td>{{ d }}</td>
+                            <td>{{ d[0] }}</td>
+                            <td>{{ d[1] }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -131,6 +136,7 @@
     
     $("#Collapseone").collapse();
     $('#CollapseTwo').toggle();
+    $('#collapsetable').collapse();
         
     }     
 

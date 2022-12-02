@@ -59,12 +59,15 @@ if __name__ == "__main__":
     for i in os.listdir(path):
         folder_list.append(path+"/"+i)
 
-
+    data=[]
     for f in folder_list:
         print(f)
         file_list=get_file_list(f)
         data_list=get_data(f,file_list)
-        data_insert_mongo(data=data_list)
+        for i in data_list:
+            data.append([i['document_data'],i['document_key']])
+            
+    print(len(data))
         #final_data=merge_data(final_data,data_list)
     
 
